@@ -13,6 +13,8 @@
 		B1E6F4D525CDA92B007D1167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1E6F4D425CDA92B007D1167 /* Assets.xcassets */; };
 		B1E6F4D825CDA92B007D1167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1E6F4D625CDA92B007D1167 /* LaunchScreen.storyboard */; };
 		B1E6F4E425CDAD98007D1167 /* SOQuestionsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4E325CDAD98007D1167 /* SOQuestionsTableVC.swift */; };
+		B1E6F4E825CDAE49007D1167 /* SOQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4E725CDAE49007D1167 /* SOQueryService.swift */; };
+		B1E6F4EB25CDB62C007D1167 /* SOQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4EA25CDB62C007D1167 /* SOQuestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B1E6F4D725CDA92B007D1167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1E6F4D925CDA92B007D1167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1E6F4E325CDAD98007D1167 /* SOQuestionsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQuestionsTableVC.swift; sourceTree = "<group>"; };
+		B1E6F4E725CDAE49007D1167 /* SOQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQueryService.swift; sourceTree = "<group>"; };
+		B1E6F4EA25CDB62C007D1167 /* SOQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQuestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		B1E6F4CA25CDA928007D1167 /* SampleAppSOAPI */ = {
 			isa = PBXGroup;
 			children = (
+				B1E6F4E625CDAE18007D1167 /* Model classes */,
 				B1E6F4E225CDAD5F007D1167 /* Resources */,
 				B1E6F4E125CDAD56007D1167 /* View Controllers */,
 				B1E6F4D425CDA92B007D1167 /* Assets.xcassets */,
@@ -81,6 +86,15 @@
 				B1E6F4D125CDA928007D1167 /* Main.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B1E6F4E625CDAE18007D1167 /* Model classes */ = {
+			isa = PBXGroup;
+			children = (
+				B1E6F4E725CDAE49007D1167 /* SOQueryService.swift */,
+				B1E6F4EA25CDB62C007D1167 /* SOQuestion.swift */,
+			);
+			path = "Model classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +167,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E6F4E825CDAE49007D1167 /* SOQueryService.swift in Sources */,
 				B1E6F4CC25CDA928007D1167 /* AppDelegate.swift in Sources */,
+				B1E6F4EB25CDB62C007D1167 /* SOQuestion.swift in Sources */,
 				B1E6F4E425CDAD98007D1167 /* SOQuestionsTableVC.swift in Sources */,
 				B1E6F4CE25CDA928007D1167 /* SceneDelegate.swift in Sources */,
 			);
