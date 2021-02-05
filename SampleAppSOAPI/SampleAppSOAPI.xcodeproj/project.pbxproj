@@ -15,6 +15,7 @@
 		B1E6F4E425CDAD98007D1167 /* SOQuestionsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4E325CDAD98007D1167 /* SOQuestionsTableVC.swift */; };
 		B1E6F4E825CDAE49007D1167 /* SOQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4E725CDAE49007D1167 /* SOQueryService.swift */; };
 		B1E6F4EB25CDB62C007D1167 /* SOQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4EA25CDB62C007D1167 /* SOQuestion.swift */; };
+		B1E6F4EE25CDDE35007D1167 /* SOQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6F4ED25CDDE35007D1167 /* SOQuestionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B1E6F4E325CDAD98007D1167 /* SOQuestionsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQuestionsTableVC.swift; sourceTree = "<group>"; };
 		B1E6F4E725CDAE49007D1167 /* SOQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQueryService.swift; sourceTree = "<group>"; };
 		B1E6F4EA25CDB62C007D1167 /* SOQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQuestion.swift; sourceTree = "<group>"; };
+		B1E6F4ED25CDDE35007D1167 /* SOQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOQuestionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		B1E6F4CA25CDA928007D1167 /* SampleAppSOAPI */ = {
 			isa = PBXGroup;
 			children = (
+				B1E6F4F025CDDE4B007D1167 /* Cells */,
 				B1E6F4E625CDAE18007D1167 /* Model classes */,
 				B1E6F4E225CDAD5F007D1167 /* Resources */,
 				B1E6F4E125CDAD56007D1167 /* View Controllers */,
@@ -95,6 +98,14 @@
 				B1E6F4EA25CDB62C007D1167 /* SOQuestion.swift */,
 			);
 			path = "Model classes";
+			sourceTree = "<group>";
+		};
+		B1E6F4F025CDDE4B007D1167 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B1E6F4ED25CDDE35007D1167 /* SOQuestionTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1E6F4E825CDAE49007D1167 /* SOQueryService.swift in Sources */,
+				B1E6F4EE25CDDE35007D1167 /* SOQuestionTableViewCell.swift in Sources */,
 				B1E6F4CC25CDA928007D1167 /* AppDelegate.swift in Sources */,
 				B1E6F4EB25CDB62C007D1167 /* SOQuestion.swift in Sources */,
 				B1E6F4E425CDAD98007D1167 /* SOQuestionsTableVC.swift in Sources */,
