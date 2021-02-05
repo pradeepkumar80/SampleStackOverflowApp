@@ -13,12 +13,31 @@ class SOQuestionsTableVC: UITableViewController {
     let queryService = SOQueryService()
     var queryResults: [SOQuestion] = []
     
+    //Activity indicator
+    var indicator = UIActivityIndicatorView()
+
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.large
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Show the activity indicator
+        activityIndicator()
+        indicator.startAnimating()
+        indicator.backgroundColor = .white
+        
         //Invoke StackOverflow REST API GET Request
         queryService.getQuestions { [weak self] results, errorMessage in
           
+            //Hide the activity indicator
+            self?.indicator.stopAnimating()
+            self?.indicator.hidesWhenStopped = true
+            
             //If the results are valid
             if let results = results {
                 self?.queryResults = results
