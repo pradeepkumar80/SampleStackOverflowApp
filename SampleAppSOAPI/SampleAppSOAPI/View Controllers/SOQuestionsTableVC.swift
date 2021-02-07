@@ -66,12 +66,7 @@ class SOQuestionsTableVC: UITableViewController {
 
         // Configure the cell...
         let question = queryResults[indexPath.row]
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd hh:mm"
-        cell.lblCreationDate.text = df.string(from: question.creationDate)
-        cell.lblQuestionTitle.text = question.title
-        cell.lblAcceptedID.text = "Accepted AnswerID: " + String(question.acceptedID)
-        cell.lblAnswersCount.text = "Answers: " + String(question.answers)
+        cell.configure(for: question)
 
         return cell
     }

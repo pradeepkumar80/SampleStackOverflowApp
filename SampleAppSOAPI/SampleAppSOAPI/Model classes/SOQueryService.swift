@@ -13,83 +13,49 @@ class SOQueryService {
     //Contants and Variables
     let defaultSession = URLSession(configuration: .default)
     
-    var dataTask: URLSessionDataTask?
     var errorMessage = ""
     var questions: [SOQuestion] = []
     
     //Type aliases
-    typealias JSONDictionary = [String: Any]
     typealias QueryResult = ([SOQuestion]?, String) -> Void
     
-    //Method to send GET request to read questions StackOverflow API
+    //Method to send GET request to StackOverflow API and then decode the JSON reponse
     func getQuestions(completion: @escaping QueryResult) {
-      dataTask?.cancel()
-
+        
+        //Set the url to REST API
         guard let url = URL(string: "https://api.stackexchange.com/2.2/questions?order=desc&sort=month&site=stackoverflow&key=NpeHvXr9x6sWOc6ZIuHu0g((") else {
-          return
-        }
+                return
+            }
 
-        dataTask = defaultSession.dataTask(with: url) { [weak self] data, response, error in
-          defer {
-            self?.dataTask = nil
-          }
+        //Prepare the GET request
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        defaultSession.dataTask(with: request) { [weak self] data, response, error in
+          //make sure no error
           if let error = error {
             self?.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
           } else if
             let data = data,
             let response = response as? HTTPURLResponse,
             response.statusCode == 200 {
-            
-            self?.updateQuestions(data)
+            do {
+                //decode the JSON response
+                let decodedResponse = try JSONDecoder().decode(SOResponse.self, from: data)
+                decodedResponse.questions.removeAll {$0.answers < 2 || $0.acceptedID == nil}
+                self?.questions = decodedResponse.questions
+            }
+            catch let parseError as NSError {
+                self?.errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
+            }
 
+            //return the SOQuestions array to main thread
             DispatchQueue.main.async {
-              completion(self?.questions, self?.errorMessage ?? "")
+                completion(self?.questions, self?.errorMessage ?? "")
             }
           }
-        }
-        
-        dataTask?.resume()
-    }
-    
-    
-    //Method to parse JSON data and add questions to array
-    private func updateQuestions(_ data: Data) {
-        var response: JSONDictionary?
-        questions.removeAll()
-      
-        do {
-            response = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary
-        } catch let parseError as NSError {
-            errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
-            return
-        }
-      
-        guard let array = response!["items"] as? [Any] else {
-          errorMessage += "Dictionary does not contain items key\n"
-          return
-        }
-      
-        var index = 0
-      
-        for questionDictionary in array {
-            if let questionDictionary = questionDictionary as? JSONDictionary {
-                if let acceptedAnswerID = questionDictionary["accepted_answer_id"] as? Int {
-                    if let answerCount = questionDictionary["answer_count"] as? Int {
-                        if answerCount > 1 {
-                            if let title = questionDictionary["title"] as? String,
-                               let unixTimestamp = questionDictionary["creation_date"] as? Double{
-                                print("Adding title:\(title), answerCount:\(answerCount), acceptedAnswerID:\(acceptedAnswerID)")
-                                questions.append(SOQuestion(title: title, answers: answerCount, acceptedID: acceptedAnswerID, creationDate: Date(timeIntervalSince1970: unixTimestamp)))
-                                index += 1
-                            }
-                        }
-                    }
-                }
-            } else {
-                errorMessage += "Problem parsing Dictionary\n"
-            }
-        }
+        }.resume()
     }
   
 }

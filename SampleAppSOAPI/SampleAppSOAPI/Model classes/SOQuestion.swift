@@ -8,18 +8,18 @@
 import Foundation
 
 //Class to hold a StackOverflow(SO) question
-class SOQuestion {
+class SOQuestion: Codable {
     //Constants
     let title: String
     let answers: Int
-    let acceptedID: Int
-    let creationDate: Date
+    let acceptedID: Int?
+    let creationDateTimeStamp: Double
     
-    //Constructor
-    init(title: String, answers: Int, acceptedID: Int, creationDate: Date) {
-        self.title = title
-        self.answers = answers
-        self.acceptedID = acceptedID
-        self.creationDate = creationDate
+    //Coding Keys
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case answers = "answer_count"
+        case acceptedID = "accepted_answer_id"
+        case creationDateTimeStamp = "creation_date"
     }
 }

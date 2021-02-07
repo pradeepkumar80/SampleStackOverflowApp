@@ -27,5 +27,16 @@ class SOQuestionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configure(for question: SOQuestion) {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd hh:mm"
+        let creationDate = Date(timeIntervalSince1970: question.creationDateTimeStamp)
+
+        lblCreationDate.text = df.string(from: creationDate)
+        lblQuestionTitle.text = question.title
+        lblAcceptedID.text = "Accepted AnswerID: " + String(question.acceptedID ?? 0)
+        lblAnswersCount.text = "Answers: " + String(question.answers)
+    }
 
 }
